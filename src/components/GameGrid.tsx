@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { ForwardRefComponent } from "framer-motion";
 
 const GameGrid = () => {
   const [games, setGames] = useState<Game[]>([]);
