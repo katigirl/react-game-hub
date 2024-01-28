@@ -6,12 +6,21 @@ import GenreList from "./components/GenreList";
 function App() {
   return (
     <>
-      <Grid gridTemplateAreas={{ base: `"navbar" "main" `, lg: `"navbar navbar" "sidebar main" ` }}>
+      <Grid
+        gridTemplateAreas={{
+          base: `"navbar" "main" `,
+          lg: `"navbar navbar" "sidebar main" `,
+        }}
+        templateColumns={{
+          base: "1 fr",
+          lg: "200px 1 fr",
+        }}
+      >
         <GridItem area={"navbar"}>
           <NavBar />
         </GridItem>
         <Show above="lg">
-          <GridItem area={"sidebar"}>
+          <GridItem area={"sidebar"} paddingX={3}>
             <GenreList />
           </GridItem>
         </Show>
