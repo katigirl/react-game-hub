@@ -12,8 +12,8 @@ function App() {
           lg: `"navbar navbar" "sidebar main" `,
         }}
         templateColumns={{
-          base: "1 fr",
-          lg: "200px 1 fr",
+          base: "1fr",
+          lg: "200px 1fr",
         }}
       >
         <GridItem area={"navbar"}>
