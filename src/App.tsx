@@ -2,8 +2,10 @@ import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
 
 function App() {
+  const [filter, setFilter] = useState(0);
   return (
     <>
       <Grid
@@ -21,11 +23,11 @@ function App() {
         </GridItem>
         <Show above="lg">
           <GridItem area={"sidebar"} paddingX={3}>
-            <GenreList />
+            <GenreList onFilter={(filter) => setFilter(filter)} />
           </GridItem>
         </Show>
         <GridItem area={"main"}>
-          <GameGrid />
+          <GameGrid filter={filter} />
         </GridItem>
       </Grid>
     </>
