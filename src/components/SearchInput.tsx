@@ -22,7 +22,7 @@ const SearchInput = ({ onSearch }: Props) => {
         <InputLeftElement>
           <SearchIcon color="gray.400" />
         </InputLeftElement>
-        <Input ref={ref} borderRadius={20} placeholder="Search games..." variant="filled" size="md" type="search" />;
+        <Input ref={ref} name="search" borderRadius={20} placeholder="Search games..." variant="filled" size="md" type="search" />;
       </InputGroup>
     </form>
   );
