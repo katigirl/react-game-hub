@@ -3,12 +3,15 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
-  selectedPlatform: Platform | null;
-  onSelectedPlatform: (platform: Platform) => void;
+  selectedPlatformId?: number;
+  onSelectedPlatformId: (platformId: number) => void;
 }
-const PlatformSelector = ({ selectedPlatform, onSelectedPlatform }: Props) => {
+const PlatformSelector = ({ selectedPlatformId, onSelectedPlatformId }: Props) => {
   const { data, error } = usePlatforms();
+  const selectedPlatform = data.results.find((platform) => platform.id === selectedPlatformId);
+
   if (error) return null;
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
@@ -16,7 +19,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectedPlatform }: Props) => {
       </MenuButton>
       <MenuList>
         {data?.results.map((platform) => (
-          <MenuItem key={platform.id} onClick={() => onSelectedPlatform(platform)}>
+          <MenuItem key={platform.id} onClick={() => onSelectedPlatformId(platform.id)}>
             {platform.name}
           </MenuItem>
         ))}
