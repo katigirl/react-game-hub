@@ -2,7 +2,7 @@ import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import APIClinet from "../services/api-client";
 import { Platform } from "./usePlatforms";
-
+import ms from "ms";
 export interface Game {
   id: number;
   name: string;
@@ -19,15 +19,15 @@ const useGames = (gameQuery: GameQuery) =>
     queryFn: ({ pageParam }) =>
       apiClient.getAll({
         params: {
-          genres: gameQuery.genre?.id,
-          parent_platforms: gameQuery.platform?.id,
+          genres: gameQuery.genreId,
+          parent_platforms: gameQuery.platformId,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
           page: pageParam,
         },
       }),
     initialPageParam: 1,
-    staleTime: 24 * 60 * 60 * 1000, //24h
+    staleTime: ms("1d"),
     placeholderData: keepPreviousData,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
