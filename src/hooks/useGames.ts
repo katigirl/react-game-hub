@@ -1,8 +1,8 @@
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
-import APIClinet from "../services/api-client";
-import { Platform } from "./usePlatforms";
 import ms from "ms";
+import APIClinet from "../services/api-client";
+import useGameQueryStore from "../store/store";
+import { Platform } from "./usePlatforms";
 export interface Game {
   id: number;
   name: string;
@@ -13,8 +13,10 @@ export interface Game {
 }
 
 const apiClient = new APIClinet<Game>("/games");
-const useGames = (gameQuery: GameQuery) =>
-  useInfiniteQuery({
+const useGames = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+
+  return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam }) =>
       apiClient.getAll({
@@ -33,5 +35,6 @@ const useGames = (gameQuery: GameQuery) =>
       return lastPage.next ? allPages.length + 1 : undefined;
     },
   });
+};
 
 export default useGames;
