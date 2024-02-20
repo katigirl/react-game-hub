@@ -1,4 +1,5 @@
-import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useGames from "../hooks/useGames";
@@ -23,12 +24,15 @@ const GameGrid = () => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
+
         {data?.pages.map((page, index) => (
           <Fragment key={index}>
             {page.results.map((game) => (
-              <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-              </GameCardContainer>
+              <Box as={motion.div} key={game.id} whileHover={{ marginTop: -8, marginBottom: 8 }} transition={"0.03s linear"}>
+                <GameCardContainer key={game.id}>
+                  <GameCard game={game} />
+                </GameCardContainer>
+              </Box>
             ))}
           </Fragment>
         ))}
