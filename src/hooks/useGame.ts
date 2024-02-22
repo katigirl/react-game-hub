@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import APIClinet from "../services/api-client";
 import { Game } from "../entities/Game";
@@ -9,7 +9,6 @@ const useGame = (slug: string) => {
     queryKey: ["game", slug],
     queryFn: () => apiClient.get(slug),
     staleTime: ms("1d"),
-    placeholderData: keepPreviousData,
   });
 };
 
