@@ -2,17 +2,7 @@ import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 import APIClinet from "../services/api-client";
 import useGameQueryStore from "../store/store";
-import { Platform } from "./usePlatforms";
-export interface Game {
-  id: number;
-  slug: string;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-  description_raw: string;
-}
+import { Game } from "../entities/Game";
 
 const apiClient = new APIClinet<Game>("/games");
 const useGames = () => {
