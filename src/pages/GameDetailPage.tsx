@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameTrailer from "../components/GameTrailer";
-import GameScreenshots from "../components/gameScreenshots";
+import GameScreenshots from "../components/GameScreenshots";
 import useGame from "../hooks/useGame";
 
 const GameDetailPage = () => {
@@ -21,7 +21,7 @@ const GameDetailPage = () => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
       <GridItem>
-        <Heading>{game.name}</Heading>
+        <Heading paddingBottom={2}>{game.name}</Heading>
         <ExpandableText>{game.description_raw}</ExpandableText>
         <GameAttributes game={game} />
       </GridItem>

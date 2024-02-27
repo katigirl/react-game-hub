@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import APIClinet from "../services/api-client";
 import ScreenShot from "../entities/ScreenShot";
 
-const useScreenShots = (gameId: number) => {
+const useScreenshots = (gameId: number) => {
   const apiClient = new APIClinet<ScreenShot>(`/games/${gameId}/screenshots`);
   return useQuery({
     queryKey: ["screenshots", gameId],
@@ -12,4 +12,4 @@ const useScreenShots = (gameId: number) => {
   });
 };
 
-export default useScreenShots;
+export default useScreenshots;
